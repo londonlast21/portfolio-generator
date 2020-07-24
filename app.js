@@ -1,5 +1,5 @@
 // const fs = require('fs');
-// const generatePage = require('./src/page-template.js');
+const generatePage = require('./src/page-template.jsoed');
 
 // const profileDataArgs = process.argv.slice(2);
 
@@ -12,6 +12,7 @@
 // });
 
 const inquirer = require('inquirer');
+
 const promptUser = () => {
 return inquirer.prompt([
         {
@@ -118,16 +119,16 @@ const promptProject = portfolioData => {
 }
 
 
-//A recursive function calls itself. It has 2 required things.
-//1. A recursive.
-//2. break out condition that says "stop recursing"
-//Prompt for user information
-//
-
 
 
 promptUser()
-.then(promptProject)
-.then(portfolioData => {
-    console.log(portfolioData);
-});
+  .then(promptProject)
+  .then(portfolioData => {
+    const pageHTML = generatePage(portfolioData);
+
+    // fs.writeFile('./index.html', pageHTML, err => {
+    //   if (err) throw new Error(err);
+
+    //   console.log('Page created! Check out index.html in this directory to see it!');
+    // });
+  });
