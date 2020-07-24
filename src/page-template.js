@@ -22,4 +22,4 @@ module.exports = templateData => {
     </html>
     `;
   }
-module.exports = generatePage;
+//module.exports = generatePage;

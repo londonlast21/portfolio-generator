@@ -1,5 +1,47 @@
-// const fs = require('fs');
-const generatePage = require('./src/page-template.js');
+const fs = require('fs');
+const generateProjects = projectsArr => {
+  return `
+    <section class="my-3" id="portfolio">
+      <h2 class="text-dark bg-primary p-2 display-inline-block">Work</h2>
+      <div class="flex-row justify-space-between">
+      ${projectsArr
+        .filter(({ feature }) => feature)
+        .map(({ name, description, languages, link }) => {
+          return `
+          <div class="col-12 mb-2 bg-dark text-light p-3">
+            <h3 class="portfolio-item-title text-light">${name}</h3>
+            <h5 class="portfolio-languages">
+              Built With:
+              ${languages.join(', ')}
+            </h5>
+            <p>${description}</p>
+            <a href="${link}" class="btn"><i class="fab fa-github mr-2"></i>View Project on GitHub</a>
+          </div>
+        `;
+        })
+        .join('')}
+
+      ${projectsArr
+        .filter(({ feature }) => !feature)
+        .map(({ name, description, languages, link }) => {
+          return `
+          <div class="col-12 col-md-6 mb-2 bg-dark text-light p-3 flex-column">
+            <h3 class="portfolio-item-title text-light">${name}</h3>
+            <h5 class="portfolio-languages">
+              Built With:
+              ${languages.join(', ')}
+            </h5>
+            <p>${description}</p>
+            <a href="${link}" class="btn mt-auto"><i class="fab fa-github mr-2"></i>View Project on GitHub</a>
+          </div>
+        `;
+        })
+        .join('')}
+      </div>
+    </section>
+  `;
+};
+require('./src/page-template.js');
 
 // const profileDataArgs = process.argv.slice(2);
 
@@ -126,9 +168,9 @@ promptUser()
   .then(portfolioData => {
     const pageHTML = generatePage(portfolioData);
 
-    // fs.writeFile('./index.html', pageHTML, err => {
-    //   if (err) throw new Error(err);
+     fs.writeFile('./index.html', pageHTML, err => {
+      if (err) throw new Error(err);
 
-    //   console.log('Page created! Check out index.html in this directory to see it!');
-    // });
+       console.log('Page created! Check out index.html in this directory to see it!');
+     });
   });
