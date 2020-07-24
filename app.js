@@ -37,6 +37,14 @@ const promptProject = portfolioData => {
     =======
     Add a New Project
     =======`);
+
+    //add it here.
+    if (!portfolioData.projects) {
+        portfolioData.projects = [];
+    
+    };
+
+
     return inquirer.prompt([
         {
             type: 'input',
@@ -68,6 +76,8 @@ const promptProject = portfolioData => {
         }
 
         
+
+        
     ])
     .then(projectData => {
         portfolioData.projects.push(projectData);
@@ -78,12 +88,15 @@ const promptProject = portfolioData => {
         }
     });
 
-    if (!portfolioData.projects) {
-        portfolioData.projects[];
-
-    };
-    
+   
 }
+
+
+//A recursive function calls itself. It has 2 required things.
+//1. A recursive.
+//2. break out condition that says "stop recursing"
+//Prompt for user information
+//
 
 
 
