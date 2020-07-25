@@ -43,7 +43,7 @@ const generateProjects = projectsArr => {
     </section>
   `;
 };
-require('./src/page-template.js');
+const generatePage=  require('./src/page-template.js');
 
 // const profileDataArgs = process.argv.slice(2);
 
