@@ -1,4 +1,6 @@
 const fs = require('fs');
+const inquirer = require('inquirer');
+
 const generateProjects = projectsArr => {
   return `
     <section class="my-3" id="portfolio">
@@ -53,7 +55,7 @@ require('./src/page-template.js');
 //     console.log('Portfolio complete! Check out index.html to see the output!')
 // });
 
-const inquirer = require('inquirer');
+//const inquirer = require('inquirer');
 
 const promptUser = () => {
 return inquirer.prompt([
